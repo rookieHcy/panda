@@ -2,6 +2,7 @@ package com.houcy7.panda.controller;
 
 import com.houcy7.panda.entity.CheckSignatureBean;
 import com.houcy7.panda.util.WeChatUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  **/
 @RestController("wx")
+@Slf4j
 public class WeChatController {
 
     @Value("${wechat.token}")
@@ -21,6 +23,7 @@ public class WeChatController {
 
     @GetMapping("")
     public String checkSignature(CheckSignatureBean bean){
+        log.info(bean.getSignature());
         return WeChatUtil.checkSignature(bean, token);
     }
 }
