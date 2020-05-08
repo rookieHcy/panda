@@ -1,0 +1,13 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 9999
+  servlet:
+    context-path: /
+  max-http-header-size: 102400
+
+wechat:
+    token: Geeker4ZolZ
