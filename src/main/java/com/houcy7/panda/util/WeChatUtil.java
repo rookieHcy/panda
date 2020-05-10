@@ -1,6 +1,6 @@
 package com.houcy7.panda.util;
 
-import com.houcy7.panda.entity.CheckSignatureBean;
+import com.houcy7.panda.entity.wechat.check.CheckSignatureBean;
 
 import java.util.Arrays;
 
@@ -17,7 +17,7 @@ public class WeChatUtil {
         String[] arr = {token, bean.getTimestamp(), bean.getNonce()};
         Arrays.sort(arr);
         String requireSign = Sha1Util.arr2SHA1(arr);
-        if (bean.getSignature().equals(requireSign)) {
+        if (bean.getSignature().equalsIgnoreCase(requireSign)) {
             return bean.getEchostr();
         }
         return "";

@@ -12,10 +12,10 @@
 
 ## 服务器接入
 
-在公众号平台填写接入的url和token
+在公测试账号公众号平台填写接入的url和token
 ![](https://tva1.sinaimg.cn/large/007S8ZIlgy1geliis0hoqj31d90u012o.jpg)
 
-[接入指南](https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Access_Overview.html)
+使用ngrok进行内网穿透（将本地服务暴露在公网）    
+编写接入接口（get方法），按照[接入指南](https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Access_Overview.html)正确接入
 
-http://wx.ilovszsn.com/wx/ 使用nginx进行代理，将wx转发到9999端口
-提供接口()
+## 封装请求、响应消息对象 创建相应工具类

@@ -1,4 +1,4 @@
-package com.houcy7.panda.entity;
+package com.houcy7.panda.entity.wechat.check;
 
 import lombok.Data;
 

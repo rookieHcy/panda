@@ -1,3 +1,20 @@
+spring:
+  # 邮箱设置
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    protocol: smtp
+    # 邮箱账号
+    username: 1450166510@qq.com
+    # 服务授权码（不是QQ密码而是刚刚开启的POP3/SMTP服务 的授权码）
+    password: qysxzijzkphqgcch
+
+  smtp:
+    auth: true
+    starttls:
+      enable: true
+      required: true
+
 # Tomcat
 server:
   tomcat:
@@ -11,3 +28,10 @@ server:
 
 wechat:
     token: Geeker4ZolZ
+    sendEmailFlag: ok
+    flushAllFlag: flushAll
+    setEmailFlag: 设置邮箱
+
+download:
+    url: https://sci-hub.im/
+    savePath: /data/pdfs
