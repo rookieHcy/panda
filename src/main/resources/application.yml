@@ -36,7 +36,3 @@ wechat:
 download:
     url: https://sci-hub.im/
     savePath: /data/pdfs
-logging:
-  file:
-    path: /data/log
-    name: panda.log
