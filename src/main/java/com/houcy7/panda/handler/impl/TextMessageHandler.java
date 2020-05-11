@@ -90,12 +90,17 @@ public class TextMessageHandler implements BaseHandler {
         if (sendEmailFlag.equalsIgnoreCase(content)) {
             // 获取论文的下载记录
             Map<String, InfoEntity> stringInfoEntityMap = InfoContainer.get(baseMessage.getFromUserName());
+            if(null == stringInfoEntityMap || stringInfoEntityMap.isEmpty()){
+                res = "没有找到待发送的论文信息！请先发送关键词进行下载";
+                return res;
+            }
+
             // 按照状态进行分组
             Map<Integer, List<InfoEntity>> collect = stringInfoEntityMap.values().stream().collect(Collectors.groupingBy(InfoEntity::getStatus));
             // 获取未下载的数据个数
             List<InfoEntity> infoEntities = collect.get(InfoEnum.START.type);
             if (null != infoEntities && !infoEntities.isEmpty()) {
-                res = "当前含有未完成下载的任务，请稍后重试";
+                res = "当前含有未完成下载的任务，数量：" + infoEntities.size() + ", 请稍后重试";
                 return res;
             } else {
                 res = "接收到发送邮件请求，请稍后查看邮箱";

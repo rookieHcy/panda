@@ -9,6 +9,7 @@ import com.houcy7.panda.entity.wechat.message.request.BaseMessage;
 import com.houcy7.panda.enums.InfoEnum;
 import com.houcy7.panda.util.MailUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -49,6 +50,7 @@ public class EmailServer implements Runnable {
         log.info("===发送邮件开始 fromUsername={} ===", baseMessage.getFromUserName());
         mailUtil.sendEmail(toEmail, context, filePath);
         log.info("===发送邮件结束 fromUsername={} ===", baseMessage.getFromUserName());
+        InfoContainer.delete(baseMessage.getFromUserName());
         DownloadStatusContainer.remove(baseMessage.getFromUserName());
     }
 
@@ -62,11 +64,16 @@ public class EmailServer implements Runnable {
             content.append("<td>").append(infoEntity.getContent()).append("</td>"); //第一列
             // 微信传过来的时间戳为s
             content.append("<td>").append(simpleDateFormat.format(new Date(infoEntity.getCreateTime() * 1000))).append("</td>"); //第一列
-            content.append("<td>").append(infoEntity.getPdfName()).append("</td>"); //第一列
-            content.append("<td>").append(infoEntity.getCostTime()).append("</td>"); //第一列
+            // 如果下载文件为空
+            if (StringUtils.isEmpty(infoEntity.getPdfName())) {
+                content.append("<td>").append("未找到相关论文").append("</td>"); //第一列
+                content.append("<td>").append("--").append("</td>"); //第一列
+            } else {
+                content.append("<td>").append(infoEntity.getPdfName()).append("</td>"); //第一列
+                content.append("<td>").append(infoEntity.getCostTime()).append("</td>"); //第一列
+                filePath.add(savePath + File.separator + infoEntity.getPdfName());
+            }
             content.append("</tr>");
-
-            filePath.add(savePath + File.separator + infoEntity.getPdfName());
         }
 
         content.append("</table>");

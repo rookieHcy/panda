@@ -117,8 +117,8 @@ public class HttpClient {
                 "User-Agent",
                 "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36");
 
-        urlConnection.setConnectTimeout(300000);
-        urlConnection.setReadTimeout(300000);
+        urlConnection.setConnectTimeout(6000000);
+        urlConnection.setReadTimeout(6000000);
         int responseCode = urlConnection.getResponseCode();
         log.info("GET Response Code :: {}", responseCode);
         if (responseCode == HttpURLConnection.HTTP_OK) { // success

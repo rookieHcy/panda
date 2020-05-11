@@ -61,4 +61,8 @@ public class InfoContainer {
     public static Map<String, InfoEntity> get(String fromUserName) {
         return infoContainer.get(fromUserName);
     }
+
+    public static void delete(String fromUserName) {
+        infoContainer.remove(fromUserName);
+    }
 }
