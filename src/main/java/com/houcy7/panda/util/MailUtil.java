@@ -95,7 +95,7 @@ public class MailUtil {
                 for (String path : list) {
                     //添加附件
                     file = new FileSystemResource(path);
-                    String[] split = path.split("//");
+                    String[] split = path.split("/");
                     helper.addAttachment(split[split.length - 1], file);
                 }
             }
