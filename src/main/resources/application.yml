@@ -15,6 +15,7 @@ spring:
       enable: true
       required: true
 
+
 # Tomcat
 server:
   tomcat:
@@ -35,3 +36,7 @@ wechat:
 download:
     url: https://sci-hub.im/
     savePath: /data/pdfs
+logging:
+  file:
+    path: /data/log
+    name: panda.log
