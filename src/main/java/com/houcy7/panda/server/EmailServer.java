@@ -28,11 +28,11 @@ public class EmailServer implements Runnable {
 
     private BaseMessage baseMessage;
     private MailUtil mailUtil;
-    private Collection<InfoEntity> list;
+    private List<InfoEntity> list;
     private String savePath;
 
 
-    public EmailServer(MailUtil mailUtil, BaseMessage baseMessage, Collection<InfoEntity> values, String savePath) {
+    public EmailServer(MailUtil mailUtil, BaseMessage baseMessage, List<InfoEntity> values, String savePath) {
         this.baseMessage = baseMessage;
         this.mailUtil = mailUtil;
         this.list = values;
@@ -50,11 +50,12 @@ public class EmailServer implements Runnable {
         log.info("===发送邮件开始 fromUsername={} ===", baseMessage.getFromUserName());
         mailUtil.sendEmail(toEmail, context, filePath);
         log.info("===发送邮件结束 fromUsername={} ===", baseMessage.getFromUserName());
-        InfoContainer.delete(baseMessage.getFromUserName());
+        // 标记本次下载的文章标识为发送邮件
+        InfoContainer.delete(baseMessage.getFromUserName(), list);
         DownloadStatusContainer.remove(baseMessage.getFromUserName());
     }
 
-    private String getDownloadInfo(List<String> filePath, Collection<InfoEntity> list, String savePath) {
+    private String getDownloadInfo(List<String> filePath, List<InfoEntity> list, String savePath) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         StringBuffer content = new StringBuffer("<html><head></head><body><h2>您好，</h2><h4>本次下载论文信息如下：</h4>");
         content.append("<table border=\"5\" style=\"border:solid 1px #E8F2F9;font-size=14px;;font-size:18px;\">");

@@ -73,7 +73,7 @@ public class WeChatServiceImpl implements WeChatService {
             if (DownloadStatusContainer.get(fromUserName)) {
                 textMessage.setContent("正在发送邮件，本次信息未处理！");
                 respXml = MessageUtil.messageToXml(textMessage);
-                log.info("{} 响应报文：{}", msgId, respXml);
+//                log.info("{} 响应报文：{}", msgId, respXml);
                 return respXml;
             }
 

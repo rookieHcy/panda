@@ -29,9 +29,6 @@ server:
 
 wechat:
     token: Geeker4ZolZ
-    sendEmailFlag: ok
-    flushAllFlag: flushAll
-    setEmailFlag: 设置邮箱
 
 download:
     url: https://sci-hub.im/

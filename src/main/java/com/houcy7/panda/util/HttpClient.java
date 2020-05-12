@@ -162,7 +162,7 @@ public class HttpClient {
         FileOutputStream fos = new FileOutputStream(file);
         try {
             int byteread = 0;
-            byte[] buffer = new byte[1204];
+            byte[] buffer = new byte[1024 * 8];
             while ((byteread = inputStream.read(buffer)) != -1) {
                 fos.write(buffer, 0, byteread);
             }
