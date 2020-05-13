@@ -20,7 +20,7 @@ public class DoiUtil {
 
     public static String getDoi(String content) {
         try {
-            String replace = content.replaceAll("\\s", "+");
+            String replace = content.replaceAll(" ", "+");
             log.info(replace);
             String url = POI_URL.replace("content", replace);
             log.info("真正获取doi的url是：{}", url);
@@ -55,5 +55,7 @@ public class DoiUtil {
 //        String doi = getDoi("Nitric Oxide-Induced Stromal Depletion for Improved Nanoparticle Penetration in Pancreatic Cancer Treatment");
         String doi = getDoi("ATP Suppression by pH-Activated Mitochondria-Targeted Delivery of Nitric Oxide Nanoplatform for Drug Resistance Reversal and Metastasis Inhibition");
         System.out.println(doi);
+        System.out.println("ATP Suppression by pH-Activated Mitochondria-Targeted Delivery of Nitric Oxide Nanoplatform for Drug Resistance Reversal and Metastasis Inhibition\"".contains("\\s"));
+
     }
 }
