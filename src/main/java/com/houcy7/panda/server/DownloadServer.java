@@ -52,7 +52,7 @@ public class DownloadServer implements Runnable{
             throw new RuntimeException("下载关键词为空");
         }
 
-        if(content.contains("\\s")){
+        if(content.contains(" ")){
             log.info("关键词中含有空格，先获取doi");
             content = DoiUtil.getDoi(content);
         }

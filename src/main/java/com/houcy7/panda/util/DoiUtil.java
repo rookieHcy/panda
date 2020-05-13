@@ -20,7 +20,7 @@ public class DoiUtil {
 
     public static String getDoi(String content) {
         try {
-            String replace = content.replaceAll(" ", "+");
+            String replace = content.replaceAll("\\s", "+");
             log.info(replace);
             String url = POI_URL.replace("content", replace);
             log.info("真正获取doi的url是：{}", url);
