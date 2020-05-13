@@ -4,6 +4,7 @@ import com.houcy7.panda.common.InfoContainer;
 import com.houcy7.panda.entity.wechat.message.request.BaseMessage;
 import com.houcy7.panda.entity.wechat.message.response.TextMessage;
 import com.houcy7.panda.enums.WeChatEnum;
+import com.houcy7.panda.util.DoiUtil;
 import com.houcy7.panda.util.HttpClient;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +50,11 @@ public class DownloadServer implements Runnable{
         if(StringUtils.isEmpty(content)){
             log.error("下载关键词为空");
             throw new RuntimeException("下载关键词为空");
+        }
+
+        if(content.contains("\\s")){
+            log.info("关键词中含有空格，先获取doi");
+            content = DoiUtil.getDoi(content);
         }
 
         String realUrl = url + content;
