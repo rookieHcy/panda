@@ -2,6 +2,7 @@ package com.houcy7.panda.util;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.houcy7.panda.enums.CharSetEnum;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.Charset;
@@ -24,7 +25,7 @@ public class DoiUtil {
             log.info(replace);
             String url = POI_URL.replace("content", replace);
             log.info("真正获取doi的url是：{}", url);
-            String result = HttpClient.httpClientGet(url, StandardCharsets.UTF_8);
+            String result = HttpClientUtil.sendGet(url, null, CharSetEnum.UTF8);
 
             // 此处可能会返回很多个结果 只取第一个
             // 查看样例 https://api.crossref.org/works?query=%22Nitric%20Oxide-Induced%20Stromal%20Depletion%20for%20Improved%20Nanoparticle%20Penetration%20in%20Pancreatic%20Cancer%20Treatment%22&
@@ -55,7 +56,7 @@ public class DoiUtil {
 //        String doi = getDoi("Nitric Oxide-Induced Stromal Depletion for Improved Nanoparticle Penetration in Pancreatic Cancer Treatment");
         String doi = getDoi("ATP Suppression by pH-Activated Mitochondria-Targeted Delivery of Nitric Oxide Nanoplatform for Drug Resistance Reversal and Metastasis Inhibition");
         System.out.println(doi);
-        System.out.println("ATP Suppression by pH-Activated Mitochondria-Targeted Delivery of Nitric Oxide Nanoplatform for Drug Resistance Reversal and Metastasis Inhibition\"".contains("\\s"));
+//        System.out.println("ATP Suppression by pH-Activated Mitochondria-Targeted Delivery of Nitric Oxide Nanoplatform for Drug Resistance Reversal and Metastasis Inhibition\"".contains("\\s"));
 
     }
 }
