@@ -160,10 +160,13 @@ public class HttpClient {
         String savePath = saveDir + File.separator + fileName;
         File file = new File(savePath);
         FileOutputStream fos = new FileOutputStream(file);
+        // add 2020-05-15 15:19:58
+        BufferedInputStream bin = new BufferedInputStream(inputStream);
+
         try {
             int byteread = 0;
             byte[] buffer = new byte[1024 * 8];
-            while ((byteread = inputStream.read(buffer)) != -1) {
+            while ((byteread = bin.read(buffer)) != -1) {
                 fos.write(buffer, 0, byteread);
             }
             log.info("{}  download finished!", fileName);
