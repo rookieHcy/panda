@@ -5,7 +5,7 @@ import com.houcy7.panda.entity.wechat.message.request.BaseMessage;
 import com.houcy7.panda.entity.wechat.message.response.TextMessage;
 import com.houcy7.panda.enums.WeChatEnum;
 import com.houcy7.panda.util.DoiUtil;
-import com.houcy7.panda.util.HttpClient;
+import com.houcy7.panda.util.PdfDownloadUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -67,10 +67,10 @@ public class DownloadServer implements Runnable{
             String[] split = attr.split("'");
             String downloadUrl = "https:" + split[1];
             log.info("msgId={}发起下载请求，请求参数： downloadUrl={}, savePath={}", baseMessage.getMsgId(), downloadUrl, savePath);
-            pdfName = HttpClient.httpsGet(downloadUrl, savePath);
+            pdfName = PdfDownloadUtil.downLoadByUrl(downloadUrl, savePath);
             log.info("msgId={}下载完成，下载论文名称{}", baseMessage.getMsgId(), pdfName);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("下载论文异常:{}", e.getMessage());
         } finally {
             // 缓存中保存下载信息和结果

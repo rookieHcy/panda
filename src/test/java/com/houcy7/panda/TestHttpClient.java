@@ -1,6 +1,6 @@
 package com.houcy7.panda;
 
-import com.houcy7.panda.util.HttpClient;
+import com.houcy7.panda.util.PdfDownloadUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,13 +23,13 @@ public class TestHttpClient {
             new Thread(() -> {
                 for (int i1 = 0; i1 < 10; i1++) {
                     try {
-                        String s = HttpClient.httpsGet(url, savePath);
+                        String s = PdfDownloadUtil.downLoadByUrl(url, savePath);
                         File file = new File(savePath + "/" + s);
                         if(file.length() != SIZE){
                             System.out.println("bingo!bingo!bingo!bingo!bingo!");
                         }
                         System.out.println("Thread = " + Thread.currentThread().getName() + "; name = " + s + "; size = " + file.length());
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
